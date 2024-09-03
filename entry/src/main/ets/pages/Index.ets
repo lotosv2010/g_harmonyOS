@@ -1,8 +1,9 @@
-@Entry
-@Component
-struct Index {
+import { Home } from './Home'
 
-  @State currentIndex: number = 0
+@Entry
+@ComponentV2
+struct Index {
+  @Local currentIndex: number = 0
 
   IsActivated(index: number) {
     return this.currentIndex === index
@@ -10,9 +11,6 @@ struct Index {
 
   color(index: number) {
     return this.currentIndex === index ? $r('app.color.gt_blue') : $r('app.color.gt_gray_6')
-  }
-
-  aboutToAppear(): void {
   }
 
   @Builder
@@ -37,7 +35,7 @@ struct Index {
   build() {
     Tabs({ barPosition: BarPosition.End}) {
       TabContent() {
-        Text('首页').fontSize(30)
+        Home()
       }
       .tabBar(this.tabBarBuilder('首页', 0, $r('app.media.tab_home_normal'), $r('app.media.tab_home_selected')))
 

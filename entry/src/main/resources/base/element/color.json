@@ -73,7 +73,11 @@
       "value": "#F5F5F5"
     },
     {
-      "name": "gt_chat_bg",
+      "name": "gt_gray_0",
+      "value": "#7C8598"
+    },
+    {
+      "name": "gt_blue_0",
       "value": "#F3F9FF"
     }
   ]

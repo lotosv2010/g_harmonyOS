@@ -10,3 +10,10 @@ export const BORDER_RADIUS_L = 12
 
 // 阴影
 export const SHADOW_RADIUS = 7.8
+
+// 字体
+export const FONT_SIZE_M = 10
+export const FONT_SIZE_S = 12
+export const FONT_SIZE = 14
+export const FONT_SIZE_L = 16
+export const FONT_SIZE_ML = 20

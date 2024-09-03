@@ -1,0 +1,28 @@
+import { HttpRequest } from 'entry/ets/utils/HttpRequest'
+import { IPost } from 'entry/ets/Interface/IPost'
+import Logger from 'entry/ets/utils/Logger'
+
+@ObservedV2
+export class PostsModel {
+  private static instance: PostsModel
+  private request: HttpRequest = new HttpRequest()
+  @Trace posts: Array<IPost> = []
+
+  public static getInstance(): PostsModel {
+    if (!PostsModel.instance) {
+      PostsModel.instance = new PostsModel()
+    }
+    return PostsModel.instance
+  }
+
+  getPosts() {
+    return this.request.get<Array<IPost>>('/posts')
+      .then((res) => {
+        Logger.json(res)
+        this.posts = res
+      })
+      .catch((error: Error) => {
+        Logger.error(error)
+      })
+  }
+}
