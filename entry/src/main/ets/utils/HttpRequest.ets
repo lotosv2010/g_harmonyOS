@@ -15,7 +15,7 @@ export class HttpRequest {
   private instance: AxiosInstance
   constructor(header?: HashMap<string, ESObject>) {
     let config: AxiosRequestConfig = {
-      baseURL: 'https://jsonplaceholder.typicode.com',
+      baseURL: 'https://my-json-server.typicode.com/lotosv2010/json-server',
       timeout: 1000 * 10
     }
     const headers: AxiosHeaders = new AxiosHeaders()

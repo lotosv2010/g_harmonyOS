@@ -2,8 +2,7 @@ import { PullToRefresh } from '@ohos/pulltorefresh'
 import { BasePullToRefreshConfigurator } from 'entry/ets/model/BasePullToRefreshConfigurator'
 import { PostsModel } from 'entry/ets/model/PostsModel'
 import { IPost } from  'entry/ets/Interface/IPost'
-import { FONT_SIZE, FONT_SIZE_ML, FONT_SIZE_S, PADDING, PADDING_L, PADDING_S } from  'entry/ets/constants/size'
-import { HashSet } from '@kit.ArkTS'
+import { FONT_SIZE, FONT_SIZE_ML, FONT_SIZE_S, PADDING, PADDING_L, SHADOW_RADIUS, BORDER_RADIUS } from  'entry/ets/constants/size'
 
 @ComponentV2
 export struct Home {
@@ -26,24 +25,35 @@ export struct Home {
   @Builder
   private getListView() {
     List({ scroller: this.scroller}) {
-      ForEach(this.viewModel.posts, (item: IPost) => {
+      ForEach(this.viewModel.posts, (item: IPost, index: number) => {
         ListItem() {
           Flex({ justifyContent: FlexAlign.Start, direction: FlexDirection.Column }) {
-            Image($r('app.media.home_card'))
+            Image(index % 2 ?$r('app.media.home_card') : $r('app.media.home_card_2'))
               .height(189)
+              .borderRadius({
+                topLeft: BORDER_RADIUS,
+                topRight: BORDER_RADIUS
+              })
             Text(item.title)
               .fontSize(FONT_SIZE_S)
               .fontColor($r('app.color.gt_gray_4'))
               .textOverflow({ overflow: TextOverflow.Ellipsis })
               .maxLines(1)
               .width('100%')
+              .padding({
+                left: PADDING_L
+              })
               .margin({
-                top: PADDING
+                top: PADDING,
               })
             Text(item.body)
-              .margin({
-                top: PADDING_S
+              .padding({
+                left: PADDING_L
               })
+              .margin({
+                bottom: 15,
+              })
+              .height(30)
               .fontSize(FONT_SIZE_ML)
               .fontWeight(FontWeight.Bold)
               .textOverflow({ overflow: TextOverflow.Ellipsis })
@@ -52,8 +62,15 @@ export struct Home {
               .fontColor($r('app.color.gt_black_5'))
           }
         }
+        .shadow({
+          color: 'rgba(0, 0, 0, 0.1)',
+          radius: BORDER_RADIUS,
+          offsetX: 0,
+          offsetY: SHADOW_RADIUS
+        })
+        .borderRadius(BORDER_RADIUS)
         .margin({
-          bottom: PADDING_L
+          bottom: 15
         })
       })
     }
@@ -67,29 +84,39 @@ export struct Home {
 
   build() {
     Column() {
-      // 搜索框
-      Search({
-        value: this.searchWord,
-        placeholder: '发现有趣的事物'
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+        // 搜索框
+        Search({
+          value: this.searchWord,
+          placeholder: '发现有趣的事物'
+        })
+          .searchIcon({
+            src: $r('app.media.search')
+          })
+          .height(40)
+          .width(284)
+          .fontColor($r('app.color.gt_black_6'))
+          .placeholderColor($r('app.color.gt_gray_5'))
+          .placeholderFont({ size: FONT_SIZE, weight: FontWeight.Normal})
+          .textFont({ size: FONT_SIZE, weight: FontWeight.Normal})
+          .margin({
+            top: 0,
+            bottom: 0
+          })
+          .onChange((value: string) => {
+            this.searchWord = value
+          })
+          .onSubmit((value: string) => {
+            this.searchWord = value
+          })
+        Image($r('app.media.home_avatar'))
+          .width(30)
+          .height(30)
+      }
+      .margin({
+        bottom: PADDING_L
       })
-        .searchIcon({
-          src: $r('app.media.search')
-        })
-        .height(40)
-        .fontColor($r('app.color.gt_black_6'))
-        .placeholderColor($r('app.color.gt_gray_5'))
-        .placeholderFont({ size: FONT_SIZE, weight: FontWeight.Normal})
-        .textFont({ size: FONT_SIZE, weight: FontWeight.Normal})
-        .margin({
-          top: 0,
-          bottom: PADDING_L
-        })
-        .onChange((value: string) => {
-          this.searchWord = value
-        })
-        .onSubmit((value: string) => {
-          this.searchWord = value
-        })
+
       // 类别 categories
       Column() {
         Flex({ justifyContent: FlexAlign.Start }) {
@@ -127,14 +154,15 @@ export struct Home {
               })
           })
         },
+        mHeight: 510,
         customLoad: null,
         customRefresh: null,
       })
     }
     .padding({
-      top: PADDING_S,
-      left: PADDING,
-      right: PADDING
+      top: PADDING,
+      left: PADDING_L,
+      right: PADDING_L
     })
     .backgroundColor($r('app.color.gt_white'))
     .layoutWeight(1)
