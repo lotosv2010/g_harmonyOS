@@ -9,8 +9,20 @@
       "value": "#FFFFFF"
     },
     {
-      "name": "gt_black",
+      "name": "gt_black_8",
       "value": "#000000"
+    },
+    {
+      "name": "gt_black_7",
+      "value": "#1C1B28"
+    },
+    {
+      "name": "gt_black_6",
+      "value": "#1C1B28"
+    },
+    {
+      "name": "gt_black_5",
+      "value": "#203152"
     },
     {
       "name": "gt_blue",
@@ -23,6 +35,10 @@
     {
       "name": "gt_orange",
       "value": "#FF6247"
+    },
+    {
+      "name": "gt_green",
+      "value": "#13AEAE"
     },
     {
       "name": "gt_gray_8",
@@ -55,6 +71,10 @@
     {
       "name": "gt_gray_1",
       "value": "#F5F5F5"
+    },
+    {
+      "name": "gt_chat_bg",
+      "value": "#F3F9FF"
     }
   ]
 }
