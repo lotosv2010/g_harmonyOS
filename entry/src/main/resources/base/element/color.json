@@ -2,7 +2,59 @@
   "color": [
     {
       "name": "start_window_background",
+      "value": "$color:gt_white"
+    },
+    {
+      "name": "gt_white",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "gt_black",
+      "value": "#000000"
+    },
+    {
+      "name": "gt_blue",
+      "value": "#5577FB"
+    },
+    {
+      "name": "gt_red",
+      "value": "#FF2D5C"
+    },
+    {
+      "name": "gt_orange",
+      "value": "#FF6247"
+    },
+    {
+      "name": "gt_gray_8",
+      "value": "#1A1A1A"
+    },
+    {
+      "name": "gt_gray_7",
+      "value": "#333333"
+    },
+    {
+      "name": "gt_gray_6",
+      "value": "#666666"
+    },
+    {
+      "name": "gt_gray_5",
+      "value": "#999999"
+    },
+    {
+      "name": "gt_gray_4",
+      "value": "#CCCCCC"
+    },
+    {
+      "name": "gt_gray_3",
+      "value": "#DDDDDD"
+    },
+    {
+      "name": "gt_gray_2",
+      "value": "#EEEEEE"
+    },
+    {
+      "name": "gt_gray_1",
+      "value": "#F5F5F5"
     }
   ]
 }

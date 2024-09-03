@@ -19,7 +19,7 @@
         "description": "$string:EntryAbility_desc",
         "icon": "$media:layered_image",
         "label": "$string:EntryAbility_label",
-        "startWindowIcon": "$media:startIcon",
+        "startWindowIcon": "$media:start_loading_bg",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
         "skills": [
@@ -47,6 +47,9 @@
           }
         ],
       }
-    ]
+    ],
+    "requestPermissions": [{
+      "name": "ohos.permission.INTERNET"
+    }]
   }
 }
