@@ -93,7 +93,7 @@ struct Start {
               color: $r('app.color.gt_black_7')
             })
             .onClick(() => {
-              this.pageInfos.replacePathByName('homePage', null)
+              this.pageInfos.replacePathByName('loginPage', null)
             })
         }.margin(5)
       }.width('100%')

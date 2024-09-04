@@ -1,4 +1,4 @@
-import { Home } from './Home'
+import { Home } from 'entry/ets/views/Home'
 
 @Builder
 export function HomePageBuilder() {
