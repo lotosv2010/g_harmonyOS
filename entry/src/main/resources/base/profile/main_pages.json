@@ -1,6 +1,7 @@
 {
   "src": [
-    "pages/Index"
+    "pages/Index",
+    "pages/Start"
   ],
   "window": {
     "designWidth": 375

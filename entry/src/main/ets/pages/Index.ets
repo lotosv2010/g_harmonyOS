@@ -1,9 +1,15 @@
 import { Home } from './Home'
 
+@Builder
+export function HomePageBuilder() {
+  Index()
+}
+
 @Entry
 @ComponentV2
 struct Index {
   @Local currentIndex: number = 0
+  private pageInfos: NavPathStack = new NavPathStack()
 
   IsActivated(index: number) {
     return this.currentIndex === index
@@ -33,32 +39,38 @@ struct Index {
   }
 
   build() {
-    Tabs({ barPosition: BarPosition.End}) {
-      TabContent() {
-        Home()
-      }
-      .tabBar(this.tabBarBuilder('首页', 0, $r('app.media.tab_home_normal'), $r('app.media.tab_home_selected')))
+    NavDestination() {
+      Tabs({ barPosition: BarPosition.End }) {
+        TabContent() {
+          Home()
+        }
+        .tabBar(this.tabBarBuilder('首页', 0, $r('app.media.tab_home_normal'), $r('app.media.tab_home_selected')))
 
-      TabContent() {
-        Text('旅行').fontSize(30)
-      }
-      .tabBar(this.tabBarBuilder('旅行', 1, $r('app.media.tab_travel_normal'), $r('app.media.tab_travel_selected')))
+        TabContent() {
+          Text('旅行').fontSize(30)
+        }
+        .tabBar(this.tabBarBuilder('旅行', 1, $r('app.media.tab_travel_normal'), $r('app.media.tab_travel_selected')))
 
-      TabContent() {
-        Text('喜欢').fontSize(30)
-      }
-      .tabBar(this.tabBarBuilder('喜欢', 2, $r('app.media.tab_like_normal'), $r('app.media.tab_like_selected')))
+        TabContent() {
+          Text('喜欢').fontSize(30)
+        }
+        .tabBar(this.tabBarBuilder('喜欢', 2, $r('app.media.tab_like_normal'), $r('app.media.tab_like_selected')))
 
-      TabContent() {
-        Text('我的内容').fontSize(30)
+        TabContent() {
+          Text('我的内容').fontSize(30)
+        }
+        .tabBar(this.tabBarBuilder('我的', 4, $r('app.media.tab_my_normal'), $r('app.media.tab_my_selected')))
       }
-      .tabBar(this.tabBarBuilder('我的', 4, $r('app.media.tab_my_normal'), $r('app.media.tab_my_selected')))
+      .barHeight(50)
+      .scrollable(false)
+      .animationDuration(100)
+      .onChange((index: number) => {
+        this.currentIndex = index
+      })
     }
-    .barHeight(50)
-    .scrollable(false)
-    .animationDuration(100)
-    .onChange((index: number) => {
-      this.currentIndex = index
+    .onBackPressed(() => {
+      return true
     })
+    .hideTitleBar(true)
   }
 }
