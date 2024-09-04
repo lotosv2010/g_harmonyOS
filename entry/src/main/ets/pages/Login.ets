@@ -1,4 +1,6 @@
-import { BORDER_RADIUS_S, FONT_SIZE } from '../constants/size'
+import { promptAction } from '@kit.ArkUI'
+import { BORDER_RADIUS_S, FONT_SIZE } from 'entry/ets/constants/size'
+import { UsersModel } from 'entry/ets/model/UsersModel'
 
 @Builder
 export function LoginPageBuilder() {
@@ -11,6 +13,26 @@ struct Login {
 
   @Local phoneNumber: string = ''
   @Local password: string = ''
+  private viewModel: UsersModel = UsersModel.getInstance()
+  private pageInfos: NavPathStack = new NavPathStack()
+
+  private login() {
+    if (!this.phoneNumber) {
+      promptAction.showToast({
+        message: '请输入手机号'
+      })
+    }
+    if (!this.password) {
+      promptAction.showToast({
+        message: '请输入密码'
+      })
+    }
+    this.viewModel.getUserByPhone(this.phoneNumber)
+      .then(() => {
+        console.log('this.viewModel.user', JSON.stringify(this.viewModel.user))
+        this.pageInfos.pushPathByName('homePage', null)
+      })
+  }
 
   build() {
     NavDestination() {
@@ -28,19 +50,38 @@ struct Login {
           .margin({
             top: 30
           })
-        TextInput({
-          text: this.phoneNumber,
-          placeholder: '请输入手机号码'
-        })
-          .type(InputType.PhoneNumber)
-          .fontColor($r('app.color.gt_black_6'))
-          .placeholderColor($r('app.color.gt_gray_5'))
-          .borderRadius(BORDER_RADIUS_S)
-          .margin({
-            top: 26
-          })
         Stack() {
-          Text('111')
+          Image($r('app.media.login_phone_number'))
+            .height(17)
+            .width(17)
+            .objectFit(ImageFit.Fill)
+            .margin({
+              left: 20
+            })
+          TextInput({
+            text: this.phoneNumber,
+            placeholder: '请输入手机号码'
+          })
+            .type(InputType.PhoneNumber)
+            .fontColor($r('app.color.gt_black_6'))
+            .placeholderColor($r('app.color.gt_gray_5'))
+            .borderRadius(BORDER_RADIUS_S)
+            .padding({
+              left: 49
+            })
+        }
+        .margin({
+          top: 26
+        })
+        .align(Alignment.Start)
+        Stack() {
+          Image($r('app.media.login_password'))
+            .height(17)
+            .width(17)
+            .objectFit(ImageFit.Fill)
+            .margin({
+              left: 20
+            })
           TextInput({
             text: this.password,
             placeholder: '请输入密码'
@@ -50,10 +91,14 @@ struct Login {
             .placeholderColor($r('app.color.gt_gray_5'))
             .borderRadius(BORDER_RADIUS_S)
             .showPasswordIcon(false)
-            .margin({
-              top: 20
+            .padding({
+              left: 49
             })
         }
+        .margin({
+          top: 20
+        })
+        .align(Alignment.Start)
         Button('登录', { type: ButtonType.Normal, stateEffect: true })
           .borderRadius(4)
           .height(48)
@@ -68,6 +113,7 @@ struct Login {
           .margin({
             top: 48
           })
+          .onClick(this.login)
         Row() {
           Text('还没有账号？ 点击 ')
             .fontColor($r('app.color.gt_black_5'))
@@ -94,6 +140,9 @@ struct Login {
         right: 30
       })
     }
+    .onReady((context: NavDestinationContext) => {
+      this.pageInfos = context.pathStack
+    })
     .onBackPressed(() => {
       return true
     })

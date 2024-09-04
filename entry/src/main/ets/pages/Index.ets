@@ -9,7 +9,6 @@ export function HomePageBuilder() {
 @ComponentV2
 struct Index {
   @Local currentIndex: number = 0
-  private pageInfos: NavPathStack = new NavPathStack()
 
   IsActivated(index: number) {
     return this.currentIndex === index
