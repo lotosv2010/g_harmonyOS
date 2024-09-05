@@ -8,11 +8,12 @@ import { HomeCategories } from 'entry/ets/components/HomeCategories'
 
 @ComponentV2
 export struct Home {
-  @Param viewModel: PostsModel = PostsModel.getInstance()
+  @Require @Param jumpAppLogin: () => void = () => {}
   @Local searchWord: string = ''
 
   private scroller: Scroller = new Scroller()
   private refreshConfigurator = new BasePullToRefreshConfigurator().setHasRefresh(false)
+  private  viewModel: PostsModel = PostsModel.getInstance()
 
   aboutToAppear(): void {
     this.viewModel.getPosts()
@@ -32,7 +33,8 @@ export struct Home {
     Column() {
       // 搜索和头像
       HomeSearch({
-        searchWord: this.searchWord!!
+        searchWord: this.searchWord!!,
+        jumpAppLogin: this.jumpAppLogin
       })
       // 类别 categories
       HomeCategories()

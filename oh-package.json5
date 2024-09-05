@@ -4,7 +4,8 @@
   "dependencies": {
     "@ohos/axios": "^2.2.3",
     "@nzy/logger": "^1.0.4",
-    "@ohos/pulltorefresh": "2.1.0-rc.0"
+    "@ohos/pulltorefresh": "2.1.0-rc.0",
+    "@lyb/loading-dialog": "^2.1.3"
   },
   "devDependencies": {
     "@ohos/hypium": "1.0.18",

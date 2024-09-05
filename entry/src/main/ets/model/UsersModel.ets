@@ -39,7 +39,7 @@ export class UsersModel {
   }
 
   getUserByPhone(phone: string) {
-    return this.request.get<Array<IUser>>(`/users?phone=${phone}}`)
+    return this.request.get<Array<IUser>>(`/users?phone=${phone}`)
       .then((res) => {
         Logger.json(res)
         if (res.length) {

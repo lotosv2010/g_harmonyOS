@@ -4,6 +4,7 @@ import { ISwiperItem } from '../Interface/SwiperItem'
 @Entry
 @ComponentV2
 struct Start {
+  @Local time = 0
   private pageInfos: NavPathStack = new NavPathStack()
   private swiperController: SwiperController = new SwiperController()
   private data: Array<ISwiperItem> = [
@@ -22,10 +23,51 @@ struct Start {
       textAlign: TextAlign.Start
     }
   ]
+  private timer: number | null = null
+
+  onPageShow() {
+    this.setTime()
+  }
+
+  jumpToAppHome() {
+    this.clear()
+    this.pageInfos.pushPathByName('homePage', null)
+  }
+
+  setTime() {
+    this.timer = setInterval(() => {
+      this.time++
+      if (this.time === 5) {
+        this.jumpToAppHome()
+      }
+    }, 1000)
+  }
+
+  clear() {
+    if (this.timer !== null) {
+      clearInterval(this.timer)
+      this.timer = null
+    }
+  }
 
   build() {
     Navigation(this.pageInfos) {
       Column({ space: 5 }) {
+        Text(`跳过 ${this.time.toString()} s`)
+          .fontColor($r('app.color.gt_white'))
+          .position({
+            top: 0,
+            right: 30
+          })
+          .backgroundColor('#33000000')
+          .textAlign(TextAlign.Center)
+          .borderRadius(19)
+          .height(38)
+          .width(90)
+          .zIndex(100)
+          .onClick(() => {
+            this.jumpToAppHome()
+          })
         Swiper(this.swiperController) {
           ForEach(this.data, (item: ISwiperItem) => {
             SwiperItem({
@@ -38,9 +80,9 @@ struct Start {
           })
         }
         .cachedCount(2)
-        .index(1)
-        .autoPlay(false)
-        .interval(4000)
+        .index(0)
+        .autoPlay(true)
+        .interval(2000)
         .loop(true)
         .indicatorInteractive(true)
         .duration(1000)
@@ -64,38 +106,6 @@ struct Start {
           arrowColor: Color.Blue
         }, false)
         .curve(Curve.Linear)
-
-        Row({ space: 12 }) {
-          Button('跳过', { type: ButtonType.Normal, stateEffect: true })
-            .borderRadius(4)
-            .height(48)
-            .width(152)
-            .fontColor($r('app.color.gt_black_7'))
-            .backgroundColor($r('app.color.gt_white'))
-            .border({
-              width: 1,
-              style: BorderStyle.Solid,
-              radius: 4,
-              color: $r('app.color.gt_black_7')
-            })
-            .onClick(() => {
-              this.pageInfos.replacePathByName('homePage', null)
-            })
-          Button('下一步', { type: ButtonType.Normal, stateEffect: true })
-            .borderRadius(4)
-            .height(48)
-            .width(152)
-            .backgroundColor($r('app.color.gt_black_7'))
-            .border({
-              width: 1,
-              radius: 4,
-              style: BorderStyle.Solid,
-              color: $r('app.color.gt_black_7')
-            })
-            .onClick(() => {
-              this.pageInfos.replacePathByName('loginPage', null)
-            })
-        }.margin(5)
       }.width('100%')
       .margin({ top: 30 })
     }

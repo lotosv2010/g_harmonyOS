@@ -1,4 +1,5 @@
-import { promptAction } from '@kit.ArkUI'
+import Logger from 'entry/ets/utils/Logger'
+import LoadingDialog from '@lyb/loading-dialog';
 import { BORDER_RADIUS_S, FONT_SIZE } from 'entry/ets/constants/size'
 import { UsersModel } from 'entry/ets/model/UsersModel'
 
@@ -10,27 +11,33 @@ export function LoginPageBuilder() {
 @Entry
 @ComponentV2
 struct Login {
-
-  @Local phoneNumber: string = ''
-  @Local password: string = ''
+  @Local phoneNumber: string = '15209876543'
+  @Local password: string = '15209876543'
   private viewModel: UsersModel = UsersModel.getInstance()
-  private pageInfos: NavPathStack = new NavPathStack()
+  private  pageInfos: NavPathStack = new NavPathStack()
 
   private login() {
     if (!this.phoneNumber) {
-      promptAction.showToast({
-        message: '请输入手机号'
-      })
+      LoadingDialog.showToast('请输入手机号')
+      return
     }
     if (!this.password) {
-      promptAction.showToast({
-        message: '请输入密码'
-      })
+      LoadingDialog.showToast('请输入密码')
+      return
     }
+    LoadingDialog.showLoading()
     this.viewModel.getUserByPhone(this.phoneNumber)
       .then(() => {
-        console.log('this.viewModel.user', JSON.stringify(this.viewModel.user))
-        this.pageInfos.pushPathByName('homePage', null)
+        console.log('getUserByPhone1', JSON.stringify(this.viewModel.user))
+        if(this.viewModel.user) {
+          Logger.json(this.viewModel.user)
+          this.pageInfos.pushPathByName('homePage', null)
+        } else {
+          LoadingDialog.showFailure('用户名或密码错误')
+        }
+      })
+      .finally(() => {
+        LoadingDialog.hide()
       })
   }
 
@@ -69,6 +76,9 @@ struct Login {
             .padding({
               left: 49
             })
+            .onChange((value: string) => {
+              this.phoneNumber = value
+            })
         }
         .margin({
           top: 26
@@ -94,6 +104,9 @@ struct Login {
             .padding({
               left: 49
             })
+            .onChange((value: string) => {
+              this.password = value
+            })
         }
         .margin({
           top: 20
@@ -113,7 +126,7 @@ struct Login {
           .margin({
             top: 48
           })
-          .onClick(this.login)
+          .onClick(() => this.login())
         Row() {
           Text('还没有账号？ 点击 ')
             .fontColor($r('app.color.gt_black_5'))
@@ -140,11 +153,11 @@ struct Login {
         right: 30
       })
     }
-    .onReady((context: NavDestinationContext) => {
-      this.pageInfos = context.pathStack
-    })
     .onBackPressed(() => {
       return true
+    })
+    .onReady((context: NavDestinationContext) => {
+      this.pageInfos = context.pathStack
     })
     .hideTitleBar(true)
   }

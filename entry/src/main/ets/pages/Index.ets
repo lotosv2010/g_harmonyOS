@@ -9,6 +9,7 @@ export function HomePageBuilder() {
 @ComponentV2
 struct Index {
   @Local currentIndex: number = 0
+  private  pageInfos: NavPathStack = new NavPathStack()
 
   IsActivated(index: number) {
     return this.currentIndex === index
@@ -16,6 +17,10 @@ struct Index {
 
   color(index: number) {
     return this.currentIndex === index ? $r('app.color.gt_blue') : $r('app.color.gt_gray_6')
+  }
+
+  jumpAppLogin() {
+    this.pageInfos.pushPathByName('loginPage', null)
   }
 
   @Builder
@@ -41,7 +46,11 @@ struct Index {
     NavDestination() {
       Tabs({ barPosition: BarPosition.End }) {
         TabContent() {
-          Home()
+          Home({
+            jumpAppLogin: () => {
+              this.jumpAppLogin()
+            }
+          })
         }
         .tabBar(this.tabBarBuilder('首页', 0, $r('app.media.tab_home_normal'), $r('app.media.tab_home_selected')))
 
@@ -69,6 +78,9 @@ struct Index {
     }
     .onBackPressed(() => {
       return true
+    })
+    .onReady((context: NavDestinationContext) => {
+      this.pageInfos = context.pathStack
     })
     .hideTitleBar(true)
   }

@@ -2,7 +2,8 @@ import { FONT_SIZE, PADDING, PADDING_L } from  'entry/ets/constants/size'
 
 @ComponentV2
 export struct  HomeSearch {
-  @Param searchWord:string = ''
+  @Require @Param searchWord:string = ''
+  @Require @Param jumpAppLogin: () => void
   @Event $searchWord: (value: string) => void
 
 
@@ -31,6 +32,7 @@ export struct  HomeSearch {
       Image($r('app.media.home_avatar'))
         .width(30)
         .height(30)
+        .onClick(() => this.jumpAppLogin())
     }
     .margin({
       bottom: PADDING_L
