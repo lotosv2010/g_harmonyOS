@@ -55,11 +55,9 @@ export struct Home {
               })
           })
         },
+        mHeight: 480,
         customLoad: null,
         customRefresh: null,
-      })
-      .margin({
-        bottom: 190
       })
     }
     .padding({

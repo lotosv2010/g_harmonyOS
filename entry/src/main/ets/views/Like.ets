@@ -58,11 +58,9 @@ export struct Like {
               })
           })
         },
+        mHeight: 590,
         customLoad: null,
         customRefresh: null,
-      })
-      .margin({
-        bottom: OFFSET_BOTTOM
       })
     }
     .padding({

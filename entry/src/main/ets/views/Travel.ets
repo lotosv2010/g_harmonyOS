@@ -55,11 +55,9 @@ export struct Travel {
               })
           })
         },
+        mHeight: 520,
         customLoad: null,
         customRefresh: null,
-      })
-      .margin({
-        bottom: 160
       })
     }
     .padding({

@@ -29,7 +29,7 @@ export struct  LikeSearch {
         .onSubmit(this.$searchWord)
 
       // 小标题
-      Text('结交世界各地的旅伴')
+      Text('高匹配度旅伴推荐')
         .fontSize(20)
         .fontColor($r('app.color.gt_black_5'))
         .fontWeight(FontWeight.Bold)

@@ -12,17 +12,14 @@ export struct LikeCard {
     List({ scroller: this.scroller}) {
       ForEach(this.users, (item: IUser, index: number) => {
         ListItem() {
-          Flex({ justifyContent: FlexAlign.Start }) {
-            Image($r(`app.media.travel_list_${index % 4 + 1}`))
-              .height(134)
-              .width(134)
-              .flexShrink(0)
-              .borderRadius({
-                topLeft: BORDER_RADIUS,
-                bottomLeft: BORDER_RADIUS
-              })
-            Flex({ direction: FlexDirection.Column }) {
-              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+          Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Flex({  justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+              Image(index % 2 ? $r('app.media.start_bg_1') : $r('app.media.home_avatar'))
+                .height(56)
+                .width(56)
+                .flexShrink(0)
+                .borderRadius('50%')
+              Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center }) {
                 Text(item.name)
                   .fontSize(18)
                   .fontWeight(FontWeight.Bold)
@@ -30,8 +27,7 @@ export struct LikeCard {
                   .textOverflow({ overflow: TextOverflow.Ellipsis })
                   .maxLines(1)
                   .width('100%')
-                Text(item.remark)
-                  // .height(30)
+                Text(item.remark)// .height(30)
                   .fontSize(FONT_SIZE_S)
                   .fontWeight(500)
                   .textOverflow({ overflow: TextOverflow.Ellipsis })
@@ -40,17 +36,15 @@ export struct LikeCard {
                   .fontColor($r('app.color.gt_gray_5'))
               }
               .margin({
-                bottom: PADDING,
+                left: PADDING,
               })
             }
-            .margin({
-              left: PADDING_S,
-              top: PADDING_L,
-              bottom: PADDING_S,
-              right: PADDING
-            })
+            Image($r('app.media.like_more'))
+              .height(12)
+              .width(3)
           }
         }
+        .height(96)
         .shadow({
           type: ShadowType.COLOR,
           color: 'rgba(0, 0, 0, 0.1)',
@@ -61,6 +55,10 @@ export struct LikeCard {
         .backdropBlur(27)
         .backgroundColor('rgba(255, 255, 255, 0.9)')
         .borderRadius(BORDER_RADIUS)
+        .padding({
+          left: 20,
+          right: 20
+        })
         .margin({
           bottom: 14
         })
