@@ -1,4 +1,7 @@
 import { Home } from 'entry/ets/views/Home'
+import { Travel } from 'entry/ets/views/Travel'
+import { Like } from 'entry/ets/views/Like'
+import { My } from 'entry/ets/views/My'
 
 @Builder
 export function HomePageBuilder() {
@@ -17,10 +20,6 @@ struct Index {
 
   color(index: number) {
     return this.currentIndex === index ? $r('app.color.gt_blue') : $r('app.color.gt_gray_6')
-  }
-
-  jumpAppLogin() {
-    this.pageInfos.pushPathByName('loginPage', null)
   }
 
   @Builder
@@ -47,25 +46,29 @@ struct Index {
       Tabs({ barPosition: BarPosition.End }) {
         TabContent() {
           Home({
-            jumpAppLogin: () => {
-              this.jumpAppLogin()
-            }
+            pageInfos: this.pageInfos
           })
         }
         .tabBar(this.tabBarBuilder('首页', 0, $r('app.media.tab_home_normal'), $r('app.media.tab_home_selected')))
 
         TabContent() {
-          Text('旅行').fontSize(30)
+          Travel({
+            pageInfos: this.pageInfos
+          })
         }
         .tabBar(this.tabBarBuilder('旅行', 1, $r('app.media.tab_travel_normal'), $r('app.media.tab_travel_selected')))
 
         TabContent() {
-          Text('喜欢').fontSize(30)
+          Like({
+            pageInfos: this.pageInfos
+          })
         }
         .tabBar(this.tabBarBuilder('喜欢', 2, $r('app.media.tab_like_normal'), $r('app.media.tab_like_selected')))
 
         TabContent() {
-          Text('我的内容').fontSize(30)
+          My({
+            pageInfos: this.pageInfos
+          })
         }
         .tabBar(this.tabBarBuilder('我的', 4, $r('app.media.tab_my_normal'), $r('app.media.tab_my_selected')))
       }

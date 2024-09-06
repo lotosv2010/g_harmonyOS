@@ -3,12 +3,11 @@ import { BasePullToRefreshConfigurator } from 'entry/ets/model/BasePullToRefresh
 import { PostsModel } from 'entry/ets/model/PostsModel'
 import { PADDING, PADDING_L } from  'entry/ets/constants/size'
 import  { HomeSearch } from 'entry/ets/components/HomeSearch'
-import { HomeCard } from 'entry/ets/components/HomeCard'
 import { HomeCategories } from 'entry/ets/components/HomeCategories'
 import Logger from '../utils/Logger'
 
 @ComponentV2
-export struct Home {
+export struct Like {
   @Require @Param pageInfos: NavPathStack | null = null
 
   @Local searchWord: string = ''
@@ -28,7 +27,7 @@ export struct Home {
 
   @Builder
   private getListView() {
-    HomeCard({ posts: this.viewModel.posts, scroller: this.scroller })
+    Text('Like')
       .onClick(() => {
         Logger.info(this.pageInfos?.pushPathByName)
         this.pageInfos?.pushPathByName('homeDetailPage', null)

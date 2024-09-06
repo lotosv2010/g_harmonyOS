@@ -15,6 +15,14 @@
       "data": {
         "description": "this is login page"
       }
+    },
+    {
+      "name": "homeDetailPage",
+      "pageSourceFile": "src/main/ets/pages/HomeDetail.ets",
+      "buildFunction": "HomeDetailPageBuilder",
+      "data": {
+        "description": "this is home detail page"
+      }
     }
   ]
 }
