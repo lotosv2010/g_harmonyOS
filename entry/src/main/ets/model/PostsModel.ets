@@ -1,6 +1,7 @@
 import { HttpRequest } from 'entry/ets/utils/HttpRequest'
 import { IPost } from 'entry/ets/Interface/IPost'
 import Logger from 'entry/ets/utils/Logger'
+import LoadingDialog from '@lyb/loading-dialog'
 
 @ObservedV2
 export class PostsModel {
@@ -16,6 +17,7 @@ export class PostsModel {
   }
 
   getPosts() {
+    LoadingDialog.showLoading('数据正在加载中...')
     return this.request.get<Array<IPost>>('/posts')
       .then((res) => {
         Logger.json(res)
@@ -23,6 +25,9 @@ export class PostsModel {
       })
       .catch((error: Error) => {
         Logger.error(error)
+      })
+      .finally(() => {
+        LoadingDialog.hide()
       })
   }
 }

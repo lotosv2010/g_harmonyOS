@@ -4,7 +4,7 @@ import { Like } from 'entry/ets/views/Like'
 import { My } from 'entry/ets/views/My'
 import { PostsModel } from 'entry/ets/model/PostsModel'
 import { CommentsModel } from 'entry/ets/model/CommentsModel'
-
+import { UsersModel } from 'entry/ets/model/UsersModel'
 
 @Builder
 export function HomePageBuilder() {
@@ -73,6 +73,9 @@ struct Index {
           })
         }
         .tabBar(this.tabBarBuilder('喜欢', 2, $r('app.media.tab_like_normal'), $r('app.media.tab_like_selected')))
+        .onWillShow(() => {
+          UsersModel.getInstance().getUsers()
+        })
 
         TabContent() {
           My({
@@ -84,6 +87,7 @@ struct Index {
       .barHeight(50)
       .scrollable(false)
       .animationDuration(100)
+      .expandSafeArea([SafeAreaType.SYSTEM],[SafeAreaEdge.TOP])
       .onChange((index: number) => {
         this.currentIndex = index
       })

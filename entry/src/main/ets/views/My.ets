@@ -1,7 +1,7 @@
 import { PullToRefresh } from '@ohos/pulltorefresh'
 import { BasePullToRefreshConfigurator } from 'entry/ets/model/BasePullToRefreshConfigurator'
 import { PostsModel } from 'entry/ets/model/PostsModel'
-import { PADDING, PADDING_L } from  'entry/ets/constants/size'
+import { OFFSET_BOTTOM, PADDING, PADDING_L } from  'entry/ets/constants/size'
 import  { HomeSearch } from 'entry/ets/components/HomeSearch'
 import { HomeCategories } from 'entry/ets/components/HomeCategories'
 import Logger from '../utils/Logger'
@@ -35,46 +35,42 @@ export struct My {
   }
 
   build() {
-    // NavDestination(){
-      Column() {
-        // 搜索和头像
-        HomeSearch({
-          searchWord: this.searchWord!!,
-          pageInfos: this.pageInfos
-        })
-        // 类别 categories
-        HomeCategories()
-        // 列表卡片
-        PullToRefresh({
-          scroller: this.scroller,
-          customList: () => {
-            this.getListView()
-          },
-          refreshConfigurator: this.refreshConfigurator,
-          onLoadMore: () => {
-            return new Promise<string>((resolve) => {
-              this.viewModel.getPosts()
-                .then(() => {
-                  resolve('')
-                })
-            })
-          },
-          mHeight: 510,
-          customLoad: null,
-          customRefresh: null,
-        })
-      }
-      .padding({
-        top: PADDING,
-        left: PADDING_L,
-        right: PADDING_L
+    Column() {
+      // 搜索和头像
+      HomeSearch({
+        searchWord: this.searchWord!!,
+        pageInfos: this.pageInfos
       })
-      .backgroundColor($r('app.color.gt_white'))
-      .layoutWeight(1)
-    // }
-    // .onReady((context: NavDestinationContext) => {
-    //   this.pageInfos = context.pathStack
-    // })
-    // .hideTitleBar(true)
+      // 类别 categories
+      HomeCategories()
+      // 列表卡片
+      PullToRefresh({
+        scroller: this.scroller,
+        customList: () => {
+          this.getListView()
+        },
+        refreshConfigurator: this.refreshConfigurator,
+        onLoadMore: () => {
+          return new Promise<string>((resolve) => {
+            this.viewModel.getPosts()
+              .then(() => {
+                resolve('')
+              })
+          })
+        },
+        customLoad: null,
+        customRefresh: null,
+      })
+      .margin({
+        bottom: OFFSET_BOTTOM
+      })
+    }
+    .padding({
+      top: PADDING,
+      left: PADDING_L,
+      right: PADDING_L
+    })
+    .backgroundColor($r('app.color.gt_white'))
+    .layoutWeight(1)
   }
 }

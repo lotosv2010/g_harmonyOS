@@ -17,3 +17,6 @@ export const FONT_SIZE_S = 12
 export const FONT_SIZE = 14
 export const FONT_SIZE_L = 16
 export const FONT_SIZE_ML = 20
+
+// tab 内容距离下边框的高度
+export const OFFSET_BOTTOM = 100

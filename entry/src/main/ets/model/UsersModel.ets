@@ -1,6 +1,7 @@
 import { HttpRequest } from 'entry/ets/utils/HttpRequest'
 import { IUser } from 'entry/ets/Interface/IUser'
 import Logger from 'entry/ets/utils/Logger'
+import LoadingDialog from '@lyb/loading-dialog'
 
 @ObservedV2
 export class UsersModel {
@@ -17,6 +18,7 @@ export class UsersModel {
   }
 
   getUsers() {
+    LoadingDialog.showLoading('数据正在加载中...')
     return this.request.get<Array<IUser>>('/users')
       .then((res) => {
         Logger.json(res)
@@ -25,9 +27,13 @@ export class UsersModel {
       .catch((error: Error) => {
         Logger.error(error)
       })
+      .finally(() => {
+        LoadingDialog.hide()
+      })
   }
 
   getUserById(id: number) {
+    LoadingDialog.showLoading('数据正在加载中...')
     return this.request.get<IUser>(`/users/${id}`)
       .then((res) => {
         Logger.json(res)
@@ -36,9 +42,13 @@ export class UsersModel {
       .catch((error: Error) => {
         Logger.error(error)
       })
+      .finally(() => {
+        LoadingDialog.hide()
+      })
   }
 
   getUserByPhone(phone: string) {
+    LoadingDialog.showLoading('数据正在加载中...')
     return this.request.get<Array<IUser>>(`/users?phone=${phone}`)
       .then((res) => {
         Logger.json(res)
@@ -50,6 +60,9 @@ export class UsersModel {
       })
       .catch((error: Error) => {
         Logger.error(error)
+      })
+      .finally(() => {
+        LoadingDialog.hide()
       })
   }
 }
