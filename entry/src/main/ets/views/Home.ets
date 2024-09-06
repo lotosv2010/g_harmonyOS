@@ -17,10 +17,6 @@ export struct Home {
   private refreshConfigurator = new BasePullToRefreshConfigurator().setHasRefresh(false)
   private  viewModel: PostsModel = PostsModel.getInstance()
 
-  aboutToAppear(): void {
-    this.viewModel.getPosts()
-  }
-
   @Monitor('searchWord')
   onSearchWordChange() {
     console.log('onSearchWordChange', this.searchWord)
@@ -69,7 +65,7 @@ export struct Home {
       left: PADDING_L,
       right: PADDING_L
     })
-    .backgroundColor($r('app.color.gt_white'))
+    .backgroundColor($r('app.color.gt_white_1'))
     .layoutWeight(1)
   }
 }

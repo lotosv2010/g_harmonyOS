@@ -1,9 +1,9 @@
 import { PullToRefresh } from '@ohos/pulltorefresh'
 import { BasePullToRefreshConfigurator } from 'entry/ets/model/BasePullToRefreshConfigurator'
-import { PostsModel } from 'entry/ets/model/PostsModel'
+import { CommentsModel } from 'entry/ets/model/CommentsModel'
 import { PADDING, PADDING_L } from  'entry/ets/constants/size'
-import  { HomeSearch } from 'entry/ets/components/HomeSearch'
-import { HomeCategories } from 'entry/ets/components/HomeCategories'
+import  { TravelSearch } from 'entry/ets/components/TravelSearch'
+import  { TravelCard } from 'entry/ets/components/TravelCard'
 import Logger from '../utils/Logger'
 
 @ComponentV2
@@ -14,20 +14,19 @@ export struct Travel {
 
   private scroller: Scroller = new Scroller()
   private refreshConfigurator = new BasePullToRefreshConfigurator().setHasRefresh(false)
-  private  viewModel: PostsModel = PostsModel.getInstance()
-
-  aboutToAppear(): void {
-    this.viewModel.getPosts()
-  }
+  private  viewModel: CommentsModel = CommentsModel.getInstance()
 
   @Monitor('searchWord')
   onSearchWordChange() {
-    console.log('onSearchWordChange', this.searchWord)
+    Logger.info(this.searchWord)
   }
 
   @Builder
   private getListView() {
-    Text('Travel')
+    TravelCard({
+      comments: this.viewModel.comments,
+      scroller: this.scroller
+    })
       .onClick(() => {
         Logger.info(this.pageInfos?.pushPathByName)
         this.pageInfos?.pushPathByName('homeDetailPage', null)
@@ -37,12 +36,10 @@ export struct Travel {
   build() {
     Column() {
       // 搜索和头像
-      HomeSearch({
+      TravelSearch({
         searchWord: this.searchWord!!,
         pageInfos: this.pageInfos
       })
-      // 类别 categories
-      HomeCategories()
       // 列表卡片
       PullToRefresh({
         scroller: this.scroller,
@@ -52,7 +49,7 @@ export struct Travel {
         refreshConfigurator: this.refreshConfigurator,
         onLoadMore: () => {
           return new Promise<string>((resolve) => {
-            this.viewModel.getPosts()
+            this.viewModel.getComments()
               .then(() => {
                 resolve('')
               })
@@ -68,7 +65,7 @@ export struct Travel {
       left: PADDING_L,
       right: PADDING_L
     })
-    .backgroundColor($r('app.color.gt_white'))
+    .backgroundColor($r('app.color.gt_white_1'))
     .layoutWeight(1)
   }
 }

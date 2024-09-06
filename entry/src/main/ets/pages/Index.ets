@@ -2,6 +2,9 @@ import { Home } from 'entry/ets/views/Home'
 import { Travel } from 'entry/ets/views/Travel'
 import { Like } from 'entry/ets/views/Like'
 import { My } from 'entry/ets/views/My'
+import { PostsModel } from 'entry/ets/model/PostsModel'
+import { CommentsModel } from 'entry/ets/model/CommentsModel'
+
 
 @Builder
 export function HomePageBuilder() {
@@ -50,6 +53,9 @@ struct Index {
           })
         }
         .tabBar(this.tabBarBuilder('首页', 0, $r('app.media.tab_home_normal'), $r('app.media.tab_home_selected')))
+        .onWillShow(() => {
+          PostsModel.getInstance().getPosts()
+        })
 
         TabContent() {
           Travel({
@@ -57,6 +63,9 @@ struct Index {
           })
         }
         .tabBar(this.tabBarBuilder('旅行', 1, $r('app.media.tab_travel_normal'), $r('app.media.tab_travel_selected')))
+        .onWillShow(() => {
+          CommentsModel.getInstance().getComments()
+        })
 
         TabContent() {
           Like({
