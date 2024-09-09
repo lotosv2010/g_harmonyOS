@@ -1,4 +1,4 @@
-import { BORDER_RADIUS, FONT_SIZE_ML, PADDING, PADDING_L, SHADOW_RADIUS } from '../constants/size';
+import { BORDER_RADIUS, FONT_SIZE_ML, PADDING_L, SHADOW_RADIUS } from '../constants/size';
 
 @Builder
 export function HomeDetailPageBuilder() {

@@ -29,7 +29,7 @@ export struct Travel {
     })
       .onClick(() => {
         Logger.info(this.pageInfos?.pushPathByName)
-        this.pageInfos?.pushPathByName('homeDetailPage', null)
+        this.pageInfos?.pushPathByName('travelDetailPage', null)
       })
   }
 

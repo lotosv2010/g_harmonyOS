@@ -23,6 +23,14 @@
       "data": {
         "description": "this is home detail page"
       }
+    },
+    {
+      "name": "travelDetailPage",
+      "pageSourceFile": "src/main/ets/pages/TravelDetail.ets",
+      "buildFunction": "TravelDetailPageBuilder",
+      "data": {
+        "description": "this is travel detail page"
+      }
     }
   ]
 }
