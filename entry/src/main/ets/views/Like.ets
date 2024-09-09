@@ -33,7 +33,7 @@ export struct Like {
     })
       .onClick(() => {
         Logger.info(this.pageInfos?.pushPathByName)
-        this.pageInfos?.pushPathByName('homeDetailPage', null)
+        this.pageInfos?.pushPathByName('likeDetailPage', null)
       })
   }
 

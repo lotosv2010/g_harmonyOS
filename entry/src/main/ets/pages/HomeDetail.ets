@@ -11,7 +11,7 @@ interface Card {
 }
 
 @Entry
-@Component
+@ComponentV2
 struct HomeDetail {
   scroller: Scroller = new Scroller()
   private  pageInfos: NavPathStack = new NavPathStack()
@@ -135,7 +135,7 @@ struct HomeDetail {
               })
             }
           }
-          .scrollable(ScrollDirection.Horizontal) // 滚动方向纵向
+          .scrollable(ScrollDirection.Horizontal) // 滚动方向
           .scrollBar(BarState.Off) // 滚动条常驻显示
         }
       }

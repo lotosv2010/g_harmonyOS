@@ -1,4 +1,4 @@
-import { BORDER_RADIUS, FONT_SIZE_ML, PADDING_L, SHADOW_RADIUS } from '../constants/size';
+import { PADDING_L } from '../constants/size';
 
 @Builder
 export function TravelDetailPageBuilder() {
@@ -11,7 +11,7 @@ interface Card {
 }
 
 @Entry
-@Component
+@ComponentV2
 struct TravelDetail {
   private  pageInfos: NavPathStack = new NavPathStack()
 
@@ -38,7 +38,6 @@ struct TravelDetail {
         }
         .width('100%')
         .height(50)
-        .id('title')
         Column() {
           Image($r('app.media.travel_detail_bg'))
             .height(285)

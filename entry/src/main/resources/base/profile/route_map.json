@@ -31,6 +31,14 @@
       "data": {
         "description": "this is travel detail page"
       }
+    },
+    {
+      "name": "likeDetailPage",
+      "pageSourceFile": "src/main/ets/pages/LikeDetail.ets",
+      "buildFunction": "LikeDetailPageBuilder",
+      "data": {
+        "description": "this is like detail page"
+      }
     }
   ]
 }

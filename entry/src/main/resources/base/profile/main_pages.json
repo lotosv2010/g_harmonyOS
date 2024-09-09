@@ -3,7 +3,8 @@
     "pages/Index",
     "pages/Start",
     "pages/Login",
-    "pages/HomeDetail"
+    "pages/HomeDetail",
+    "pages/LikeDetail"
   ],
   "window": {
     "designWidth": 375
