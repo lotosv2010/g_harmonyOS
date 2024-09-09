@@ -5,11 +5,6 @@ export function TravelDetailPageBuilder() {
   TravelDetail()
 }
 
-interface Card {
-  title: string,
-  imageUrl: Resource
-}
-
 @Entry
 @ComponentV2
 struct TravelDetail {

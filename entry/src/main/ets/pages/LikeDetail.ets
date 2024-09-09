@@ -3,7 +3,7 @@ export function LikeDetailPageBuilder() {
   LikeDetail()
 }
 
-interface Chart {
+interface IChart {
   name: string,
   avatar: Resource,
   status: string,
@@ -16,7 +16,7 @@ interface Chart {
 struct LikeDetail {
   scroller: Scroller = new Scroller()
   private  pageInfos: NavPathStack = new NavPathStack()
-  @Local chartList: Array<Chart> = [
+  @Local chartList: Array<IChart> = [
     { name: '步行倒计时', avatar: $r('app.media.like_detail_avatar_1'), status: '在线', time: '2分钟前', context: '走得远了，最后也许会遇到一个人。像樵夫，像路人，出现在你与高山流水中。短短几句，让你充满温暖，引为莫逆之交。' },
     { name: '微声祈月', avatar: $r('app.media.like_detail_avatar_2'), status: '离线', time: '2024-09-01', context: '姆巴巴内森林茂密，雨量适中，气候温和，周围风光优美，是一座四季如春的山城。' },
     { name: '微声祈月', avatar: $r('app.media.like_detail_avatar_2'), status: '离线', time: '2024-09-02', context: '姆巴巴内森林茂密，雨量适中，气候温和，周围风光优美，是一座四季如春的山城。' },
@@ -67,7 +67,7 @@ struct LikeDetail {
         .backgroundColor($r('app.color.gt_green_0'))
         Scroll(this.scroller) {
           Column() {
-            ForEach(this.chartList, (c: Chart) => {
+            ForEach(this.chartList, (c: IChart) => {
               Flex() {
                 Image(c.avatar)
                   .height(48)

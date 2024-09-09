@@ -5,7 +5,7 @@ export function HomeDetailPageBuilder() {
   HomeDetail()
 }
 
-interface Card {
+interface ICard {
   title: string,
   imageUrl: Resource
 }
@@ -15,7 +15,7 @@ interface Card {
 struct HomeDetail {
   scroller: Scroller = new Scroller()
   private  pageInfos: NavPathStack = new NavPathStack()
-  private cardList: Array<Card> = [
+  private cardList: Array<ICard> = [
     { title: '一键入住酒店', imageUrl: $r('app.media.home_detail_card_1')},
     { title: '交通指南', imageUrl:  $r('app.media.home_detail_card_2')},
     { title: '附近美食', imageUrl:  $r('app.media.home_detail_card_1')}
@@ -97,7 +97,7 @@ struct HomeDetail {
             })
           Scroll(this.scroller) {
             Row() {
-              ForEach(this.cardList, (card: Card) => {
+              ForEach(this.cardList, (card: ICard) => {
                 Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
                   Image(card.imageUrl)
                     .width(129)

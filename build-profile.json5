@@ -1,6 +1,20 @@
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\gaowenbin\\.ohos\\config\\default_g_harmonyOS_M501qPt6WK2WormZ5anbgmyfZEzdkQvRUDgxPxYjaDQ=.cer",
+          "storePassword": "0000001A26B259464B195E130DE88B4D395A9109A53A410F640E0BD93A28C90825CDC2FA05CB98D04538",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001ABFA980C1EBC7578DDE9B735EFB17BEBD56AF1F457FFCE18B8F83B73825B3B4E1E8BC16522116",
+          "profile": "C:\\Users\\gaowenbin\\.ohos\\config\\default_g_harmonyOS_M501qPt6WK2WormZ5anbgmyfZEzdkQvRUDgxPxYjaDQ=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\gaowenbin\\.ohos\\config\\default_g_harmonyOS_M501qPt6WK2WormZ5anbgmyfZEzdkQvRUDgxPxYjaDQ=.p12"
+        }
+      }
+    ],
     "products": [
       {
         "name": "default",

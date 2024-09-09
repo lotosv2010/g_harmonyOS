@@ -82,7 +82,7 @@ struct Index {
             pageInfos: this.pageInfos
           })
         }
-        .tabBar(this.tabBarBuilder('我的', 4, $r('app.media.tab_my_normal'), $r('app.media.tab_my_selected')))
+        .tabBar(this.tabBarBuilder('我的', 3, $r('app.media.tab_my_normal'), $r('app.media.tab_my_selected')))
       }
       .barHeight(50)
       .scrollable(false)
