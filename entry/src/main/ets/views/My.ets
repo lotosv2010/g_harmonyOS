@@ -65,6 +65,8 @@ export struct My {
         bottom: OFFSET_BOTTOM
       })
     }
+    .height('100%')
+    .width('100%')
     .padding({
       top: PADDING,
       left: PADDING_L,

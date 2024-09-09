@@ -55,11 +55,13 @@ export struct Travel {
               })
           })
         },
-        mHeight: 520,
+        mHeight: 530,
         customLoad: null,
         customRefresh: null,
       })
     }
+    .height('100%')
+    .width('100%')
     .padding({
       top: PADDING,
       left: PADDING_L,

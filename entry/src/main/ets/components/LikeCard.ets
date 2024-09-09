@@ -34,6 +34,9 @@ export struct LikeCard {
                   .maxLines(3)
                   .width('100%')
                   .fontColor($r('app.color.gt_gray_5'))
+                  .margin({
+                    top: 5
+                  })
               }
               .margin({
                 left: PADDING,

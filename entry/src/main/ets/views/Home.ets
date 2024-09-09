@@ -55,11 +55,13 @@ export struct Home {
               })
           })
         },
-        mHeight: 480,
+        mHeight: 500,
         customLoad: null,
         customRefresh: null,
       })
     }
+    .height('100%')
+    .width('100%')
     .padding({
       top: PADDING,
       left: PADDING_L,
