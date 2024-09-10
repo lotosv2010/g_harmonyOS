@@ -39,6 +39,14 @@
       "data": {
         "description": "this is like detail page"
       }
+    },
+    {
+      "name": "basicWebPage",
+      "pageSourceFile": "src/main/ets/views/BasicWeb.ets",
+      "buildFunction": "BasicWebPageBuilder",
+      "data": {
+        "description": "this is basic web page"
+      }
     }
   ]
 }

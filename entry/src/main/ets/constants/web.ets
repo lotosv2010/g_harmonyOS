@@ -1,0 +1,1 @@
+export const BASIC_WEB_PAGE_NAME = 'basicWebPage'

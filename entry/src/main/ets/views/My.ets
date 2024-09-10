@@ -1,8 +1,10 @@
 import { AlertDialog } from '@kit.ArkUI';
-import { UsersModel } from 'entry/ets/model/UsersModel'
-import { PADDING, PADDING_L } from  'entry/ets/constants/size'
-import LoadingDialog from '@lyb/loading-dialog'
+import { UsersModel } from 'entry/ets/model/UsersModel';
+import { PADDING, PADDING_L } from  'entry/ets/constants/size';
+import LoadingDialog from '@lyb/loading-dialog';
 import Logger from '../utils/Logger';
+import { IParam } from  'entry/ets/Interface/IBasicWeb';
+import { BASIC_WEB_PAGE_NAME } from '../constants/web';
 
 interface ISetting {
   key: string
@@ -19,7 +21,7 @@ export struct My {
 
   private settings: Array<ISetting> = [
     { key: 'profile', title: '个人信息', icon: $r('app.media.my_icon_profile_circle') },
-    { key: 'notification', title: '通知', icon: $r('app.media.my_icon_notification') },
+    { key: 'notification', title: '通知', icon: $r('app.media.my_icon_notification'), onClick: (): void => this.openWeb() },
     { key: 'message', title: 'FAQ', icon: $r('app.media.my_icon_message') },
     { key: 'theme', title: '黑色主题', hasToggle: true },
     { key: 'language', title: '语言', icon: $r('app.media.my_icon_global') },
@@ -54,6 +56,16 @@ export struct My {
   logout() {
     Logger.info('logout')
     this.logoutDialog.open()
+  }
+
+  openWeb() {
+    const param: IParam = {
+      url: Math.random() > 0.5 ? 'https://cn.vuejs.org/' : 'https://www.harmonyos.com/'
+    }
+    this.pageInfos?.pushPath({
+      name: BASIC_WEB_PAGE_NAME,
+      param
+    })
   }
 
   onPageShow(): void {
