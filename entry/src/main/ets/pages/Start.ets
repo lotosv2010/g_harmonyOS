@@ -4,7 +4,7 @@ import { ISwiperItem } from '../Interface/SwiperItem'
 @Entry
 @ComponentV2
 struct Start {
-  @Local time = 0
+  @Local time: number = 0
   private pageInfos: NavPathStack = new NavPathStack()
   private swiperController: SwiperController = new SwiperController()
   private data: Array<ISwiperItem> = [

@@ -1,7 +1,7 @@
 import { PullToRefresh } from '@ohos/pulltorefresh'
 import { BasePullToRefreshConfigurator } from 'entry/ets/model/BasePullToRefreshConfigurator'
 import { UsersModel } from 'entry/ets/model/UsersModel'
-import { OFFSET_BOTTOM, PADDING, PADDING_L } from  'entry/ets/constants/size'
+import { PADDING, PADDING_L } from  'entry/ets/constants/size'
 import  { LikeSearch } from 'entry/ets/components/LikeSearch'
 import { LikeCard } from 'entry/ets/components/LikeCard'
 import Logger from '../utils/Logger'

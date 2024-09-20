@@ -1,7 +1,7 @@
 import { PullToRefresh } from '@ohos/pulltorefresh'
 import { BasePullToRefreshConfigurator } from 'entry/ets/model/BasePullToRefreshConfigurator'
 import { PostsModel } from 'entry/ets/model/PostsModel'
-import { OFFSET_BOTTOM, PADDING, PADDING_L } from  'entry/ets/constants/size'
+import { PADDING, PADDING_L } from  'entry/ets/constants/size'
 import  { HomeSearch } from 'entry/ets/components/HomeSearch'
 import { HomeCard } from 'entry/ets/components/HomeCard'
 import { HomeCategories } from 'entry/ets/components/HomeCategories'

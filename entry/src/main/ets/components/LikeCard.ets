@@ -1,5 +1,5 @@
 import { IUser } from  'entry/ets/Interface/IUser'
-import { FONT_SIZE_S, PADDING, PADDING_L, BORDER_RADIUS, PADDING_S } from  'entry/ets/constants/size'
+import { FONT_SIZE_S, PADDING, BORDER_RADIUS } from  'entry/ets/constants/size'
 
 @ComponentV2
 export struct LikeCard {

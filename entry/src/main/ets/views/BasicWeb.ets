@@ -41,6 +41,11 @@ export struct BasicWeb {
         .onPageEnd(() => {
           // 设置webview的UserAgent
           // this.getWebUserAgent()
+          // const userAgent = this.controller.getUserAgent();
+          // let customUserAgent = userAgent + ' app_sdk'
+          // Logger.info(userAgent)
+          // Logger.info(customUserAgent)
+          // this.controller.setCustomUserAgent(customUserAgent);
           LoadingDialog.hide()
         })
         .onOverrideUrlLoading((webResourceRequest: WebResourceRequest) => {

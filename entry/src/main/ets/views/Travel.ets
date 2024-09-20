@@ -1,7 +1,7 @@
 import { PullToRefresh } from '@ohos/pulltorefresh'
 import { BasePullToRefreshConfigurator } from 'entry/ets/model/BasePullToRefreshConfigurator'
 import { CommentsModel } from 'entry/ets/model/CommentsModel'
-import { OFFSET_BOTTOM, PADDING, PADDING_L } from  'entry/ets/constants/size'
+import { PADDING, PADDING_L } from  'entry/ets/constants/size'
 import  { TravelSearch } from 'entry/ets/components/TravelSearch'
 import  { TravelCard } from 'entry/ets/components/TravelCard'
 import Logger from '../utils/Logger'

@@ -1,10 +1,8 @@
-import { FONT_SIZE_S } from '../constants/size'
-
 @ComponentV2
 export struct SwiperItem {
-  @Param flexDirection = FlexDirection.Column
+  @Param flexDirection: FlexDirection = FlexDirection.Column
   @Param imageSource: Resource = $r('app.media.start_bg_1')
-  @Param textAlign = TextAlign.Start
+  @Param textAlign: TextAlign = TextAlign.Start
   @Param title: string = ''
   @Param body: string = ''
 

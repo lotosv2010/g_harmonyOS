@@ -1,4 +1,4 @@
-import { FONT_SIZE, PADDING, PADDING_L } from  'entry/ets/constants/size'
+import { FONT_SIZE, PADDING_L } from  'entry/ets/constants/size'
 
 @ComponentV2
 export struct  HomeSearch {
