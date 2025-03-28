@@ -41,9 +41,9 @@ export struct BasicWeb {
         .onPageEnd(() => {
           // 设置webview的UserAgent
           // this.getWebUserAgent()
-          // const userAgent = this.controller.getUserAgent();
-          // let customUserAgent = userAgent + ' app_sdk'
-          // Logger.info(userAgent)
+          const userAgent = this.controller.getUserAgent();
+          let customUserAgent = userAgent + ' app_sdk'
+          Logger.info(userAgent)
           // Logger.info(customUserAgent)
           // this.controller.setCustomUserAgent(customUserAgent);
           LoadingDialog.hide()
@@ -64,6 +64,16 @@ export struct BasicWeb {
       Logger.json(params)
       if (params?.length) {
         this.param = params[0]
+      }
+    })
+    .onBackPressed(() => {
+      if (this.controller.accessBackward()) {
+        this.controller.backward(); // 返回上一个web页
+        // 执行用户自定义返回逻辑
+        return true;
+      } else {
+        // 执行系统默认返回逻辑，返回上一个page页
+        return false;
       }
     })
     .hideTitleBar(true)
